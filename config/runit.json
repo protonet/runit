@@ -1,0 +1,27 @@
+{
+
+  "defaults": {
+    "options": {
+      "setuidgid":     "protonet:protonet",
+      "root":           null,
+      "envdir":         "/etc/env/protonet/",
+      "limitmemory":    209715200,
+      "limitopenfiles": null,
+      "limitprocesses": null
+    }
+  },
+
+  "services": {
+    "rabbitmq": {
+      "commands": {
+        "start": "rabbitmq-server start"
+      }
+    },
+    "apache2": {
+      "commands": {
+        "start": "apachectl"
+      }
+    }
+  }
+
+}

@@ -1,0 +1,23 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ansi (1.4.3)
+    columnize (0.3.6)
+    debugger (1.2.4)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.7)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.7)
+    minitest (4.6.1)
+    turn (0.9.6)
+      ansi
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  debugger
+  minitest
+  turn

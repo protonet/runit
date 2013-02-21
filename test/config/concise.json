@@ -1,0 +1,16 @@
+{
+  "defaults": {
+    "options": {
+      "setuidgid": "test:test:"
+    }
+  },
+
+  "services": {
+    "testservice" : {
+      "commands": {
+        "start": "./this/is/how/to start --me"
+      }
+    }
+  }
+
+}
