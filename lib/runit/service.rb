@@ -7,7 +7,7 @@ module Runit
 
     attr_reader :name, :properties
     def initialize(name, properties)
-      @name       = name
+      @name       = name.to_s
       @properties = properties
     end
 
@@ -47,8 +47,12 @@ module Runit
     def log_file
       <<-EOHEREDOC.unindent
         #!/bin/sh -e
-        exec svlogd -tt /var/log/protonet/#{name}/
+        exec svlogd -tt #{log_dir}
       EOHEREDOC
+    end
+
+    def log_dir
+      "/var/log/protonet/#{name}/"
     end
 
     def run_file
