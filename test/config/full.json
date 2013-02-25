@@ -1,0 +1,21 @@
+{
+  "defaults": {
+    "options": {
+      "setuidgid": "test:test",
+      "limitmemory": 419430400
+    }
+  },
+
+  "services": {
+    "testservice" : {
+      "commands": {
+        "start": "./this/is/how/to start --me"
+      },
+      "depends": [ "otherservice" ],
+      "options": {
+        "setuidgid": "service:override"
+      }
+    }
+  }
+
+}

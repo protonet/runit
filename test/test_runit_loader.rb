@@ -32,7 +32,7 @@ module Runit
     end
 
     def test_accessing_services_as_a_method_returning_a_hash_of_service_objects
-      assert Loader.new(@concise).services.is_a? Hash
+      assert Loader.new(@concise).services.is_a? Array
     end
 
   end

@@ -1,7 +1,8 @@
 {
   "defaults": {
     "options": {
-      "setuidgid": "test:test:"
+      "setuidgid": "test:test",
+      "limitmemory": 209715200
     }
   },
 

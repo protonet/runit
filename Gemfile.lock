@@ -10,14 +10,18 @@ GEM
     debugger-linecache (1.1.2)
       debugger-ruby_core_source (>= 1.1.1)
     debugger-ruby_core_source (1.1.7)
+    deep_merge (1.0.0)
     minitest (4.6.1)
     turn (0.9.6)
       ansi
+    unindent (1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   debugger
+  deep_merge
   minitest
   turn
+  unindent

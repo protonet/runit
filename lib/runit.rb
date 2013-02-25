@@ -1,4 +1,5 @@
 require './lib/runit/loader'
+require './lib/runit/service'
 
 module Runit
 

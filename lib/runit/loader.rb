@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'deep_merge'
 require 'JSON'
 
 module Runit
@@ -20,7 +21,10 @@ module Runit
     end
 
     def services
-      @hash[:services]
+      @hash[:services].collect do |name, information|
+        merged_information = information.deep_merge(@hash[:defaults])
+        Service.new(name, merged_information)
+      end
     end
 
     def defaults
