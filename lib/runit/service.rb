@@ -1,3 +1,5 @@
+require 'unindent'
+
 module Runit
   class Service
 

@@ -35,7 +35,7 @@ module Runit
         end
 
         File.open service_log_directory + 'run', 'wb:utf-8' do |f|
-          f.write service.run_file
+          f.write service.log_file
         end
 
       end
