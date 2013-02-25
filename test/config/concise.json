@@ -2,6 +2,7 @@
   "defaults": {
     "options": {
       "setuidgid": "test:test",
+      "root":      "/opt/protonet",
       "limitmemory": 209715200
     }
   },

@@ -13,7 +13,8 @@
       },
       "depends": [ "otherservice" ],
       "options": {
-        "setuidgid": "service:override"
+        "setuidgid": "service:override",
+        "root": "/opt/testservice"
       }
     }
   }

@@ -5,6 +5,7 @@ module Runit
 
     ARG_OPT_MAP = {
       :setuidgid => '-u',
+      :root      => '-/'
     }
 
     attr_reader :name, :properties
