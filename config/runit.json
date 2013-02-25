@@ -1,6 +1,9 @@
 {
-
   "defaults": {
+    "env": {
+      "rails_env": "production",
+      "rack_env":  "production"
+    },
     "options": {
       "setuidgid":     "protonet:protonet",
       "root":           null,

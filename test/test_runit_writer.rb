@@ -42,6 +42,11 @@ module Runit
           # Service Logging Directory & Manifest
           assert Dir.exists?  "/etc/sv/#{service.name}/log"
           assert File.exists? "/etc/sv/#{service.name}/log/run"
+          # Environmental Variable Directories
+          assert Dir.exists?  "/etc/sv/#{service.name}/env/"
+          assert File.exists? "/etc/sv/#{service.name}/env/RAILS_ENV"
+          assert File.exists? "/etc/sv/#{service.name}/env/RACK_ENV"
+          assert File.exists? "/etc/sv/#{service.name}/env/ANY_VAR"
           #assert_equal service.log_file, File.read("/etc/sv/#{service.name}/log/run")
           # Log Destination Directory
           assert Dir.exists? "/var/log/protonet/#{service.name}/"

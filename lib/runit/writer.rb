@@ -25,17 +25,28 @@ module Runit
         # * /var/log/protonet/{Service}/    # service.log_dir
         service_directory     = output_directory + service.name
         service_log_directory = service_directory + 'log'
+        service_env_directory = service_directory + 'env'
 
         FileUtils.mkdir_p service_directory
         FileUtils.mkdir_p service_log_directory
+        FileUtils.mkdir_p service_env_directory if service.env_vars.any?
         FileUtils.mkdir_p service.log_dir
 
+        # Write the actual run definition
         File.open service_directory + 'run', 'wb:utf-8' do |f|
           f.write service.run_file
         end
 
+        # Write the log running service definition
         File.open service_log_directory + 'run', 'wb:utf-8' do |f|
           f.write service.log_file
+        end
+
+        # Write the env var files
+        service.env_vars.each_pair do |variable, value|
+          File.open service_env_directory + variable.to_s, 'wb:utf-8' do |f|
+            f.write value
+          end
         end
 
       end
