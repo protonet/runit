@@ -39,6 +39,18 @@ module Runit
       properties[:options] || {}
     end
 
+    # man (1) svlogd
+    # -tt timestamp. Prefix each selected line with a human
+    # readable, sortable UTC timestamp of the form
+    # YYYY-MM-DD_HH:MM:SS.xxxxx when writing to log or to
+    # standard error.
+    def log_file
+      <<-EOHEREDOC.unindent
+        #!/bin/sh -e
+        exec svlogd -tt /var/log/protonet/#{name}/
+      EOHEREDOC
+    end
+
     def run_file
       <<-EOHEREDOC.unindent
         #!/bin/sh -e

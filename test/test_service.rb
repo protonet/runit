@@ -42,6 +42,15 @@ module Runit
       assert_equal sample, @full_service.run_file
     end
 
+    def test_service_can_create_it_s_own_log_file_definition
+      sample = <<-EOSCRIPT.unindent
+        #!/bin/sh -e
+        exec svlogd -tt /var/log/protonet/testservice/
+      EOSCRIPT
+      assert_equal sample, @concise_service.log_file
+      assert_equal sample, @full_service.log_file
+    end
+
   end
 
 end
