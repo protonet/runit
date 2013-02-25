@@ -15,11 +15,13 @@ module Runit
     end
 
     def chpst_args
-      ARG_OPT_MAP.collect do |key,switch|
+      args = ARG_OPT_MAP.collect do |key,switch|
         if options.has_key? key
           [switch, options.fetch(key)].join(' ')
         end
-      end.join(' ')
+      end
+      args.push(*['-e', "/etc/sv/#{name}/env"]) if env_vars.any?
+      args.join(' ')
     end
 
     def dependency_line

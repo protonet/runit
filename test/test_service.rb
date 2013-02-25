@@ -21,7 +21,7 @@ module Runit
     end
 
     def test_concise_service_can_print_it_s_own_chpst_line
-      assert_equal "-u test:test -/ /opt/protonet", @concise_service.chpst_args
+      assert_equal "-u test:test -/ /opt/protonet -e /etc/sv/#{@concise_service.name}/env", @concise_service.chpst_args
     end
 
     def test_concise_env_options
@@ -36,7 +36,7 @@ module Runit
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e
         # No dependencies
-        exec chpst -u test:test -/ /opt/protonet ./this/is/how/to start --me 2>&1
+        exec chpst -u test:test -/ /opt/protonet -e /etc/sv/testservice/env ./this/is/how/to start --me 2>&1
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
     end
@@ -45,7 +45,7 @@ module Runit
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e
         sv check otherservice
-        exec chpst -u service:override -/ /opt/testservice ./this/is/how/to start --me 2>&1
+        exec chpst -u service:override -/ /opt/testservice -e /etc/sv/testservice/env ./this/is/how/to start --me 2>&1
       EOSCRIPT
       assert_equal sample, @full_service.run_file
     end
