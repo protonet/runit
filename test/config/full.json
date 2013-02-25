@@ -3,6 +3,9 @@
     "options": {
       "setuidgid": "test:test",
       "limitmemory": 419430400
+    },
+    "env": {
+      "ANY_VAR": "something"
     }
   },
 
@@ -12,6 +15,10 @@
         "start": "./this/is/how/to start --me"
       },
       "depends": [ "otherservice" ],
+      "env": {
+        "rails_env": "production",
+        "RACK_ENV": "testing"
+      },
       "options": {
         "setuidgid": "service:override",
         "root": "/opt/testservice"

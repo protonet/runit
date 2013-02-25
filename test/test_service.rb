@@ -24,6 +24,14 @@ module Runit
       assert_equal "-u test:test -/ /opt/protonet", @concise_service.chpst_args
     end
 
+    def test_concise_env_options
+      assert_equal({RAILS_ENV: 'development'}, @concise_service.env_vars)
+    end
+
+    def test_full_env_options_merges
+      assert_equal({RAILS_ENV: 'production', RACK_ENV: 'testing', ANY_VAR: 'something'}, @full_service.env_vars)
+    end
+
     def test_concise_service_can_print_it_s_own_run_file
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e

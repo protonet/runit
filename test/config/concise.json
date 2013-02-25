@@ -4,6 +4,9 @@
       "setuidgid": "test:test",
       "root":      "/opt/protonet",
       "limitmemory": 209715200
+    },
+    "env": {
+      "Rails_Env": "development"
     }
   },
 

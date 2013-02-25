@@ -30,6 +30,14 @@ module Runit
       properties[:depends] || []
     end
 
+    def env_vars
+      Hash.new.tap do |vars|
+        properties[:env].collect do |variable, value|
+          vars[variable.upcase.to_sym] = value
+        end
+      end
+    end
+
     def start_command
       commands[:start]
     end
