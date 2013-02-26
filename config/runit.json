@@ -64,7 +64,7 @@
         "root": "/home/protonet/shared/"
       },
       "commands": {
-        "start": "which monit -c ./config/monit_ptn_node"
+        "start": "monit -c ./config/monit_ptn_node"
       }
     }
   }
