@@ -3,16 +3,9 @@ GEM
   specs:
     addressable (2.3.2)
     ansi (1.4.3)
-    columnize (0.3.6)
-    debugger (1.2.4)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.7)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.7)
     deep_merge (1.0.0)
     fakefs (0.4.2)
+    json (1.7.7)
     launchy (2.1.2)
       addressable (~> 2.3)
     minitest (4.6.1)
@@ -24,9 +17,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  debugger
   deep_merge
   fakefs
+  json
   launchy
   minitest
   turn
