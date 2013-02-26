@@ -1,5 +1,5 @@
 require 'bundler'
-Bundle.setup(:default)
+Bundler.setup(:default)
 
 require './lib/runit/loader'
 require './lib/runit/service'
