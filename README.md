@@ -39,6 +39,8 @@ This will (be default) install everything into `/etc/sv`, these services won't
 be picked up by the typical runit installation until they are symlinked into
 `/etc/service/`, this can be done with:
 
+    $ rake symlink
+    -- or --
     $ ls /etc/sv | sudo xargs -i ln -sf /etc/sv/{} /etc/service/{}
 
 Which should symlink them into the monitored directory, once they are

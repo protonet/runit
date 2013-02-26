@@ -1,6 +1,9 @@
 {
 
   "defaults": {
+    "options": {
+      "setuidgid": "protonet:protonet"
+    },
     "env": {
       "rails_env": "production",
       "rack_env":  "production"
@@ -12,27 +15,29 @@
       "commands": {
         "start": "rabbitmq-server"
       },
+      "options": {
+        "setuidgid": "rabbitmq:rabbitmq"
+      }
       "env": {
         "rabbitmq_nodename": "protonet"
-      },
-      "options": {
-        "setuidgid": "protonet:protonet",
-        "root":      "/tmp"
       }
     },
     "apache2": {
       "depends": ["rabbitmq"],
       "commands": {
         "start": "apachectl -f /etc/apache2/apache2.conf -D FOREGROUND"
-      },
-      "options": {
-        "setuidgid": "www-data:www-data"
       }
     },
     "node.js": {
       "depends": ["rabbitmq"],
+      "env": {
+        "node_port": 8124
+      },
+      "options": {
+        "root": "/home/protonet/dashboard/current"
+      },
       "commands": {
-        "start": "......."
+        "start": "node ./node/node.js port=8124 env=production"
       }
     },
     "js_dispatcher": {
@@ -57,9 +62,6 @@
     },
     "app_monit": {
       "depends": ["rabbitmq", "apache2", "node.js", "js_dispatcher", "solr"],
-      "env": {
-        "path": "/etc/halp:$PATH"
-      },
       "options": {
         "root": "/home/protonet/shared/"
       },

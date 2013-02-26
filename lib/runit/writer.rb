@@ -36,11 +36,13 @@ module Runit
         File.open service_directory + 'run', 'wb:utf-8' do |f|
           f.write service.run_file
         end
+        File.chmod(0766, service_directory + 'run')
 
         # Write the log running service definition
         File.open service_log_directory + 'run', 'wb:utf-8' do |f|
           f.write service.log_file
         end
+        File.chmod(0766, service_log_directory + 'run')
 
         # Write the env var files
         service.env_vars.each_pair do |variable, value|

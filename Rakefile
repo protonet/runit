@@ -14,6 +14,14 @@ task :install do
   Runit::Writer.new.write_all!
 end
 
+desc "Link all files in /etc/sv to /etc/service"
+task :symlink do
+  "ls /etc/sv | sudo xargs -i ln -sf /etc/sv/{} /etc/service/{}".tap do |cmd|
+    puts cmd
+    `#{cmd}`
+  end
+end
+
 if defined?(Launchy)
   require 'tmpdir'
   require './lib/runit'

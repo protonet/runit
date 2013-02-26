@@ -81,8 +81,14 @@ module Runit
     def run_file
       <<-EOHEREDOC.unindent
         #!/bin/sh -e
+
         #{dependencies.any? ? dependency_line : "# No dependencies"}
         #{sources.any?      ? sources_lines   : "# No sources"}
+
+        # http://smarden.org/runit/faq.html#user
+        chmod 755 ./supervise
+        chown protonet ./supervise/ok ./supervise/control ./supervise/status
+
         exec chpst #{chpst_args} #{start_command} 2>&1
       EOHEREDOC
     end
