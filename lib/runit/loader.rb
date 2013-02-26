@@ -1,6 +1,6 @@
 require 'forwardable'
 require 'deep_merge'
-require 'JSON'
+require 'json'
 
 module Runit
 
