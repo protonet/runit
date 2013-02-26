@@ -1,28 +1,31 @@
 {
+
   "defaults": {
     "env": {
       "rails_env": "production",
       "rack_env":  "production"
-    },
-    "options": {
-      "setuidgid":     "protonet:protonet",
-      "root":           null,
-      "envdir":         "/etc/env/protonet/",
-      "limitmemory":    209715200,
-      "limitopenfiles": null,
-      "limitprocesses": null
     }
   },
 
   "services": {
     "rabbitmq": {
       "commands": {
-        "start": "rabbitmq-server start"
+        "start": "rabbitmq-server"
+      },
+      "env": {
+        "rabbitmq_nodename": "protonet"
+      },
+      "options": {
+        "setuidgid": "protonet:protonet",
+        "root":      "/tmp"
       }
     },
     "apache2": {
       "commands": {
-        "start": "apachectl"
+        "start": "apachectl -f /etc/apache2/apache2.conf -D FOREGROUND"
+      },
+      "options": {
+        "setuidgid": "www-data:www-data"
       }
     }
   }
