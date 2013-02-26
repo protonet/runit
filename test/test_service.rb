@@ -36,6 +36,7 @@ module Runit
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e
         # No dependencies
+        # No sources
         exec chpst -u test:test -/ /opt/protonet -e /etc/sv/testservice/env ./this/is/how/to start --me 2>&1
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
@@ -45,6 +46,8 @@ module Runit
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e
         sv check otherservice
+        source /etc/profile.d/rvm.sh
+        source /etc/profile.d/protonet.sh
         exec chpst -u service:override -/ /opt/testservice -e /etc/sv/testservice/env ./this/is/how/to start --me 2>&1
       EOSCRIPT
       assert_equal sample, @full_service.run_file

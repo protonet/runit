@@ -15,6 +15,7 @@
         "start": "./this/is/how/to start --me"
       },
       "depends": [ "otherservice" ],
+      "sources": [ "/etc/profile.d/rvm.sh", "/etc/profile.d/protonet.sh" ],
       "env": {
         "rails_env": "production",
         "RACK_ENV": "testing"

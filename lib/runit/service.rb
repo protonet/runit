@@ -32,6 +32,16 @@ module Runit
       properties[:depends] || []
     end
 
+    def sources
+      properties[:sources] || []
+    end
+
+    def sources_lines
+      sources.collect do |source|
+        "source #{source}"
+      end.join("\n")
+    end
+
     def env_vars
       Hash.new.tap do |vars|
         properties[:env].collect do |variable, value|
@@ -72,6 +82,7 @@ module Runit
       <<-EOHEREDOC.unindent
         #!/bin/sh -e
         #{dependencies.any? ? dependency_line : "# No dependencies"}
+        #{sources.any?      ? sources_lines   : "# No sources"}
         exec chpst #{chpst_args} #{start_command} 2>&1
       EOHEREDOC
     end

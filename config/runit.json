@@ -21,11 +21,50 @@
       }
     },
     "apache2": {
+      "depends": ["rabbitmq"],
       "commands": {
         "start": "apachectl -f /etc/apache2/apache2.conf -D FOREGROUND"
       },
       "options": {
         "setuidgid": "www-data:www-data"
+      }
+    },
+    "node.js": {
+      "depends": ["rabbitmq"],
+      "commands": {
+        "start": "......."
+      }
+    },
+    "js_dispatcher": {
+      "depends": ["rabbitmq"],
+      "commands": {
+        "start": "bundle exec ruby ./messaging/event_machine/js_dispatching_server.rb"
+      },
+      "sources": [ "/usr/local/rvm/scipts/rvm" ],
+      "options": {
+        "root": "/home/protonet/dashboard/current"
+      }
+    },
+    "solr": {
+      "depends": ["rabbitmq"],
+      "sources": [ "/usr/local/rvm/scipts/rvm" ],
+      "options": {
+        "root": "/home/protonet/dashboard/current"
+      },
+      "commands": {
+        "start": "bundle exec rake sunspot:solr:run"
+      }
+    },
+    "app_monit": {
+      "depends": ["rabbitmq", "apache2", "node.js", "js_dispatcher", "solr"],
+      "env": {
+        "path": "/etc/halp:$PATH"
+      },
+      "options": {
+        "root": "/home/protonet/shared/"
+      },
+      "commands": {
+        "start": "which monit -c ./config/monit_ptn_node"
       }
     }
   }
