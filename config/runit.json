@@ -13,13 +13,15 @@
   "services": {
     "rabbitmq": {
       "commands": {
-        "start": "rabbitmq-server"
+        "start": "/usr/lib/rabbitmq/bin/rabbitmq-server"
       },
       "options": {
-        "setuidgid": "rabbitmq:rabbitmq"
+        "setuidgid": "rabbitmq:rabbitmq",
+        "root":      "/var/lib/rabbitmq"
       }
       "env": {
-        "rabbitmq_nodename": "protonet"
+        "rabbitmq_nodename": "protonet",
+        "home":              "/var/lib/rabbitmq"
       }
     },
     "apache2": {
