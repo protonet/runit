@@ -38,7 +38,9 @@ module Runit
 
     def sources_lines
       sources.collect do |source|
-        "source #{source}"
+        "source #{source}".tap do |s|
+          s.prepend(" "*8) unless sources.first == source
+        end
       end.join("\n")
     end
 

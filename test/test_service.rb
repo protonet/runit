@@ -38,19 +38,24 @@ module Runit
         exec 2>&1
         # No dependencies
         # No sources
+        # http://smarden.org/runit/faq.html#user
+        chmod 755      ./supervise
+        chown protonet ./supervise/ok ./supervise/control ./supervise/status
         exec chpst -u test:test -/ /opt/protonet -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
     end
 
     def test_full_service_can_print_it_s_own_run_file
-      debugger
       sample = <<-EOSCRIPT.unindent
         #!/bin/sh -e
         exec 2>&1
         sv check otherservice
         source /etc/profile.d/rvm.sh
         source /etc/profile.d/protonet.sh
+        # http://smarden.org/runit/faq.html#user
+        chmod 755      ./supervise
+        chown protonet ./supervise/ok ./supervise/control ./supervise/status
         exec chpst -u service:override -/ /opt/testservice -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @full_service.run_file
