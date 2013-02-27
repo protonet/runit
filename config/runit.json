@@ -18,7 +18,7 @@
       "options": {
         "setuidgid": "rabbitmq:rabbitmq",
         "root":      "/var/lib/rabbitmq"
-      }
+      },
       "env": {
         "rabbitmq_nodename": "protonet",
         "home":              "/var/lib/rabbitmq"
