@@ -38,7 +38,7 @@ module Runit
 
     def sources_lines
       sources.collect do |source|
-        ". #{source}".tap do |s|
+        "source #{source}".tap do |s|
           s.prepend(" "*8) unless sources.first == source
         end
       end.join("\n")
@@ -86,7 +86,7 @@ module Runit
 
     def run_file
       <<-EOHEREDOC.unindent
-        #!/bin/sh -e
+        #!/bin/bash -e
         exec 2>&1
         #{dependencies.any? ? dependency_line : "# No dependencies"}
         #{chdir_line || "# No change to pwd"                       }

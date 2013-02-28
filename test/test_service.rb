@@ -34,7 +34,7 @@ module Runit
 
     def test_concise_service_can_print_it_s_own_run_file
       sample = <<-EOSCRIPT.unindent
-        #!/bin/sh -e
+        #!/bin/bash -e
         exec 2>&1
         # No dependencies
         # No change to pwd
@@ -49,12 +49,12 @@ module Runit
 
     def test_full_service_can_print_it_s_own_run_file
       sample = <<-EOSCRIPT.unindent
-        #!/bin/sh -e
+        #!/bin/bash -e
         exec 2>&1
         sv check otherservice
         # No change to pwd
-        . /etc/profile.d/rvm.sh
-        . /etc/profile.d/protonet.sh
+        source /etc/profile.d/rvm.sh
+        source /etc/profile.d/protonet.sh
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
