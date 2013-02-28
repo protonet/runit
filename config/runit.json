@@ -29,8 +29,9 @@
       "options": {
         "setuidgid": "root:root"
       },
+      "sources": [ "/etc/apache2/envvars" ],
       "commands": {
-        "start": "apachectl -f /etc/apache2/apache2.conf -D FOREGROUND"
+        "start": "/usr/sbin/apache2 -f /etc/apache2/apache2.conf -D FOREGROUND"
       }
     },
     "node.js": {
