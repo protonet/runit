@@ -89,8 +89,8 @@ module Runit
         #!/bin/sh -e
         exec 2>&1
         #{dependencies.any? ? dependency_line : "# No dependencies"}
-        #{sources.any?      ? sources_lines   : "# No sources"     }
         #{chdir_line || "# No change to pwd"                       }
+        #{sources.any?      ? sources_lines   : "# No sources"     }
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status

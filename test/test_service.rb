@@ -37,8 +37,8 @@ module Runit
         #!/bin/sh -e
         exec 2>&1
         # No dependencies
-        # No sources
         # No change to pwd
+        # No sources
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
@@ -52,9 +52,9 @@ module Runit
         #!/bin/sh -e
         exec 2>&1
         sv check otherservice
+        # No change to pwd
         . /etc/profile.d/rvm.sh
         . /etc/profile.d/protonet.sh
-        # No change to pwd
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
