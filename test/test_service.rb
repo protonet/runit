@@ -21,7 +21,7 @@ module Runit
     end
 
     def test_concise_service_can_print_it_s_own_chpst_line
-      assert_equal "-u test:test -/ /opt/protonet -e /etc/sv/#{@concise_service.name}/env", @concise_service.chpst_args
+      assert_equal "-u test:test -e /etc/sv/#{@concise_service.name}/env", @concise_service.chpst_args
     end
 
     def test_concise_env_options
@@ -38,10 +38,11 @@ module Runit
         exec 2>&1
         # No dependencies
         # No sources
+        # No change to pwd
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
-        exec chpst -u test:test -/ /opt/protonet -e /etc/sv/testservice/env ./this/is/how/to start --me
+        exec chpst -u test:test -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
     end
@@ -51,12 +52,13 @@ module Runit
         #!/bin/sh -e
         exec 2>&1
         sv check otherservice
-        source /etc/profile.d/rvm.sh
-        source /etc/profile.d/protonet.sh
+        . /etc/profile.d/rvm.sh
+        . /etc/profile.d/protonet.sh
+        # No change to pwd
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
-        exec chpst -u service:override -/ /opt/testservice -e /etc/sv/testservice/env ./this/is/how/to start --me
+        exec chpst -u service:override -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @full_service.run_file
     end

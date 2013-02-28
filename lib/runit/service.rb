@@ -5,7 +5,7 @@ module Runit
 
     ARG_OPT_MAP = {
       :setuidgid => '-u',
-      :root      => '-/'
+      #:root      => '-/'
     }
 
     attr_reader :name, :properties
@@ -38,7 +38,7 @@ module Runit
 
     def sources_lines
       sources.collect do |source|
-        "source #{source}".tap do |s|
+        ". #{source}".tap do |s|
           s.prepend(" "*8) unless sources.first == source
         end
       end.join("\n")
@@ -80,12 +80,17 @@ module Runit
       "/var/log/protonet/#{name}/"
     end
 
+    def chdir_line
+      "cd #{options[:chdir]}" if options[:chdir]
+    end
+
     def run_file
       <<-EOHEREDOC.unindent
         #!/bin/sh -e
         exec 2>&1
         #{dependencies.any? ? dependency_line : "# No dependencies"}
-        #{sources.any?      ? sources_lines   : "# No sources"}
+        #{sources.any?      ? sources_lines   : "# No sources"     }
+        #{chdir_line || "# No change to pwd"                       }
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status

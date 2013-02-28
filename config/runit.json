@@ -17,7 +17,7 @@
       },
       "options": {
         "setuidgid": "rabbitmq:rabbitmq",
-        "root":      "/var/lib/rabbitmq"
+        "chdir":     "/var/lib/rabbitmq"
       },
       "env": {
         "rabbitmq_nodename": "protonet",
@@ -26,6 +26,9 @@
     },
     "apache2": {
       "depends": ["rabbitmq"],
+      "options": {
+        "setuidgid": "root:root"
+      },
       "commands": {
         "start": "apachectl -f /etc/apache2/apache2.conf -D FOREGROUND"
       }
@@ -36,7 +39,7 @@
         "node_port": 8124
       },
       "options": {
-        "root": "/home/protonet/dashboard/current"
+        "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
         "start": "node ./node/node.js port=8124 env=production"
@@ -54,7 +57,7 @@
     },
     "solr": {
       "depends": ["rabbitmq"],
-      "sources": [ "/usr/local/rvm/scipts/rvm" ],
+      "sources": [ "/usr/local/rvm/scripts/rvm" ],
       "options": {
         "root": "/home/protonet/dashboard/current"
       },
