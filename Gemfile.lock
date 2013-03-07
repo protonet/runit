@@ -9,6 +9,7 @@ GEM
     launchy (2.1.2)
       addressable (~> 2.3)
     minitest (4.6.1)
+    rake (10.0.3)
     turn (0.9.6)
       ansi
     unindent (1.0)
@@ -22,5 +23,6 @@ DEPENDENCIES
   json
   launchy
   minitest
+  rake
   turn
   unindent

@@ -1,8 +1,9 @@
 source :rubygems
 
-gem 'unindent'
 gem 'deep_merge'
 gem 'json'
+gem 'rake'
+gem 'unindent'
 
 group :test do
   gem 'launchy'
