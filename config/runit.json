@@ -49,21 +49,19 @@
     "js_dispatcher": {
       "depends": ["rabbitmq"],
       "commands": {
-        "start": "bundle exec ruby ./messaging/event_machine/js_dispatching_server.rb"
+        "start": "/usr/local/rvm/bin/protonet_bundle exec ruby ./messaging/event_machine/js_dispatching_server.rb"
       },
-      "sources": [ "/usr/local/rvm/scipts/rvm" ],
       "options": {
         "chdir": "/home/protonet/dashboard/current"
       }
     },
     "solr": {
       "depends": ["rabbitmq"],
-      "sources": [ "/usr/local/rvm/scripts/rvm" ],
       "options": {
         "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
-        "start": "bundle exec rake sunspot:solr:run"
+        "start": "/usr/local/rvm/bin/protonet_bundle exec rake sunspot:solr:run"
       }
     },
     "app_monit": {
