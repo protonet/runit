@@ -67,10 +67,11 @@
     "app_monit": {
       "depends": ["rabbitmq", "apache2", "node.js", "js_dispatcher", "solr"],
       "options": {
-        "chdir": "/home/protonet/shared/"
+        "setuidgid": "root:root",
+        "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
-        "start": "monit -c ./config/monit_ptn_node"
+        "start": "monit"
       }
     }
   }
