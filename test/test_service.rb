@@ -37,11 +37,11 @@ module Runit
         #!/bin/bash -e
         exec 2>&1
         # No dependencies
-        # No change to pwd
         # No sources
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        # No change to pwd
         exec chpst -u test:test -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
@@ -52,12 +52,12 @@ module Runit
         #!/bin/bash -e
         exec 2>&1
         sv check otherservice
-        # No change to pwd
         source /etc/profile.d/rvm.sh
         source /etc/profile.d/protonet.sh
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        # No change to pwd
         exec chpst -u service:override -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @full_service.run_file

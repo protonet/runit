@@ -89,11 +89,11 @@ module Runit
         #!/bin/bash -e
         exec 2>&1
         #{dependencies.any? ? dependency_line : "# No dependencies"}
-        #{chdir_line || "# No change to pwd"                       }
         #{sources.any?      ? sources_lines   : "# No sources"     }
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
         chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        #{chdir_line || "# No change to pwd"                       }
         exec chpst #{chpst_args} #{start_command}
       EOHEREDOC
     end
