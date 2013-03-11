@@ -53,14 +53,14 @@
       },
       "sources": [ "/usr/local/rvm/scipts/rvm" ],
       "options": {
-        "root": "/home/protonet/dashboard/current"
+        "chdir": "/home/protonet/dashboard/current"
       }
     },
     "solr": {
       "depends": ["rabbitmq"],
       "sources": [ "/usr/local/rvm/scripts/rvm" ],
       "options": {
-        "root": "/home/protonet/dashboard/current"
+        "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
         "start": "bundle exec rake sunspot:solr:run"
@@ -69,7 +69,7 @@
     "app_monit": {
       "depends": ["rabbitmq", "apache2", "node.js", "js_dispatcher", "solr"],
       "options": {
-        "root": "/home/protonet/shared/"
+        "chdir"": "/home/protonet/shared/"
       },
       "commands": {
         "start": "monit -c ./config/monit_ptn_node"
