@@ -71,7 +71,7 @@
         "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
-        "start": "monit"
+        "start": "monit -I"
       }
     }
   }
