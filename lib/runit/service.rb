@@ -92,7 +92,8 @@ module Runit
         #{sources.any?      ? sources_lines   : "# No sources"     }
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
-        chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        chmod ug+rw    ./supervise/*
+        chown protonet ./supervise/*
         #{chdir_line || "# No change to pwd"                       }
         exec chpst #{chpst_args} #{start_command}
       EOHEREDOC

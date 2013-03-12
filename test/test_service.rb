@@ -40,7 +40,8 @@ module Runit
         # No sources
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
-        chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        chmod ug+rw  t ./supervise/*
+        chown protonet ./supervise/*
         # No change to pwd
         exec chpst -u test:test -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
