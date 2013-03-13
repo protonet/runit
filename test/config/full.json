@@ -12,6 +12,7 @@
   "services": {
     "testservice" : {
       "commands": {
+        "before": "mkdir -p /var/something",
         "start": "./this/is/how/to start --me"
       },
       "depends": [ "otherservice" ],

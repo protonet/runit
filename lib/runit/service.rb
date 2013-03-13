@@ -56,6 +56,10 @@ module Runit
       commands[:start]
     end
 
+    def before_command
+      commands[:before]
+    end
+
     def commands
       properties[:commands] || {}
     end
@@ -95,6 +99,7 @@ module Runit
         chmod ug+rw    ./supervise/*
         chown protonet ./supervise/*
         #{chdir_line || "# No change to pwd"                       }
+        #{before_command || "# Nothing to do before"               }
         exec chpst #{chpst_args} #{start_command}
       EOHEREDOC
     end

@@ -31,6 +31,7 @@
       },
       "sources": [ "/etc/apache2/envvars" ],
       "commands": {
+        "before": "mkdir -p /var/run/apache2",
         "start": "/usr/sbin/apache2 -f /etc/apache2/apache2.conf -D FOREGROUND"
       }
     },

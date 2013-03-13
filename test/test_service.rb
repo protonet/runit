@@ -40,9 +40,10 @@ module Runit
         # No sources
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
-        chmod ug+rw  t ./supervise/*
+        chmod ug+rw    ./supervise/*
         chown protonet ./supervise/*
         # No change to pwd
+        # Nothing to do before
         exec chpst -u test:test -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @concise_service.run_file
@@ -57,8 +58,10 @@ module Runit
         source /etc/profile.d/protonet.sh
         # http://smarden.org/runit/faq.html#user
         chmod 755      ./supervise
-        chown protonet ./supervise/ok ./supervise/control ./supervise/status
+        chmod ug+rw    ./supervise/*
+        chown protonet ./supervise/*
         # No change to pwd
+        mkdir -p /var/something
         exec chpst -u service:override -e /etc/sv/testservice/env ./this/is/how/to start --me
       EOSCRIPT
       assert_equal sample, @full_service.run_file
