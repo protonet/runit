@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://www.rubygems.org/'
 
 gem 'deep_merge'
 gem 'json'
