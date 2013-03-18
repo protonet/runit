@@ -1,5 +1,9 @@
 require 'rake/testtask'
-require 'launchy' rescue nil
+begin
+  require 'launchy'
+rescue LoadError
+  warn "Launchy tasks not available"
+end
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
