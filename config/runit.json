@@ -62,7 +62,7 @@
         "chdir": "/home/protonet/dashboard/current"
       },
       "commands": {
-        "start": "/usr/local/rvm/bin/protonet_bundle exec rake sunspot:solr:run"
+        "start": "/usr/local/rvm/bin/protonet_bundle exec sunspot-solr run -p 8983 -s /home/protonet/dashboard/current/solr -d /home/protonet/dashboard/shared/solr/data"
       }
     },
     "app_monit": {
